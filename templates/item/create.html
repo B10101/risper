@@ -1,0 +1,44 @@
+{% extends './index.html' %}
+
+{% load widget_tweaks %}
+{% load static %}
+
+{% block sidebar %}
+<!-- Sidebar content: Add item form -->
+<h2 class="mb-4">Add item</h2>
+<form class="create-form" action="{% url 'item:create' %}" data-url="{% url 'item:create' %}" method="post">
+    {% csrf_token %}
+    <!-- Display non-field errors -->
+    <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+        {% for error in form.non_field_errors %}
+        {{ error }}
+        {% endfor %}
+    </div>
+
+    <!-- Loop through form fields -->
+    {% for field in form %}
+    <!-- Check if the user is not a superuser -->
+    {% if not user.is_superuser %}
+    <div class="form-group row">
+        <!-- Label for the field -->
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <!-- Render the form field with form-control class -->
+        {% render_field field class="form-control" %}
+        <!-- Display field errors -->
+        <div class="{% if field.errors %} invalid{% endif %}">
+            {% for error in field.errors %}
+            <p class="help-block">{{ error }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <!-- Submit button -->
+    <button type="submit" id="submit-btn" class="btn btn-primary">Add item</button>
+</form>
+{% endblock sidebar %}
+
+{% block extrascripts %}
+<!-- Load additional scripts -->
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock extrascripts %}

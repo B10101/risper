@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="margin-top: 50px; text-align: center;">
+    <h2 style="margin-bottom: 30px;">Reserve Item</h2>
+    <form method="post" style="display: inline-block;">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #007bff; color: #fff; border: none; border-radius: 5px; transition: background-color 0.3s ease;">Reserve</button>
+    </form>
+  </div>
+{% endblock %}

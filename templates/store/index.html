@@ -1,0 +1,22 @@
+{% extends '../base.html' %}
+{% block title %}
+Stores
+{% endblock title %}
+{% block content %}
+{% load static %}
+{% if user.is_authenticated%}
+{% include '../header.html' %}
+<div class="container-fluid row">
+    <div class="col-lg-12">
+        <div id='loader' style='display: none;'>
+            <img src='{%static "img/image.gif"%}' class="loader">
+        </div>
+
+        {% block list_content %}
+        {% include "./store_list.html" %}
+        {% endblock list_content %}
+    </div>
+
+</div>
+{%endif%}
+{% endblock content %}

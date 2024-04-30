@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Pending Sign-ups</h2>
+  <ul>
+    {% for user in pending_signups %}
+      <li>{{ user.username }}</li> <!-- Display user information as needed -->
+    {% empty %}
+      <li>No pending sign-ups</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

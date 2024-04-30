@@ -1,0 +1,12 @@
+{% extends '../base.html' %}
+{% block title %}Update Equipment Details{% endblock title %}
+{% block content %}
+<div class="container">
+    <h1>Update Equipment Details</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render form fields -->
+        <button type="submit" class="btn btn-primary">Update Equipment</button>
+    </form>
+</div>
+{% endblock content %}

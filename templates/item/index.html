@@ -1,0 +1,30 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block title %}
+Items
+{% endblock title %}
+
+{% block content %}
+<!-- Check if user is authenticated -->
+{% if user.is_authenticated %}
+    <!-- Include header -->
+    {% include '../header.html' %}
+    <!-- Main container for item list -->
+    <div class="container-fluid row">
+        <div class="col-lg-12" id="list">
+
+            <!-- Loader image -->
+            <div id='loader' style='display: none;'>
+                <img src='{% static "img/image.gif" %}' class="loader">
+            </div>
+
+            <!-- Block for listing content -->
+            {% block list_content %}
+                {% include "item/item_list.html" %}
+            {% endblock list_content %}
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,129 @@
+{% load widget_tweaks %}
+{% block title %}
+{% endblock title %}
+
+<!-- CSS styles -->
+<style>
+  /* Button styles */
+  button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    background: rgb(0, 0, 0);
+    width: 20%;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    margin-top : 10px;
+  }
+
+  /* Button hover styles */
+  button:hover,
+  active,
+  button:focus {
+    background: #272727;
+  }
+
+  /* Body styles */
+  body {
+    background-image: url('https://media.licdn.com/dms/image/C561BAQEUYApCoEMyHg/company-background_10000/0/1633088668740/university_of_westminster_cover?e=2147483647&v=beta&t=YJBm_Pv9wkZ6nvZSiqc4jtwgCvt2HgWRKsuhnkmY7Kc');
+    background-size: cover;
+    background-position: center; 
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Login form container styles */
+  .login-form {
+    background: rgba(255, 229, 32, 0.978); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 10px; 
+    text-align: center;
+    width: 100%; /* Full width */
+    margin-top: 20px;
+    width: 500px; /* Set a fixed width */
+  }
+
+  /* Form group styles */
+  .form-group {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  /* Input field styles */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%; /* Adjust the width as needed */
+    height: 30px;
+    border-radius: 5px; /* Rounds the corners of the input fields */
+    border: 1px solid #ccc; /* Adds a border to the input fields */
+    box-sizing: border-box; /* Ensures the padding and border are included in the width */
+  }
+
+  /* Label styles */
+  label {
+    display: block; /* Ensures each label appears on a new line */
+    margin-bottom: 5px; /* Adds some space below each label */
+    font-weight: bold; /* Makes the label text bold */
+    color: black; /* Sets the color of the label text */
+  }
+
+  /* Logo image styles */
+  img.logo {
+    max-width: 100px; /* Set maximum width for the logo image */
+    margin-bottom: 20px; /* Add some space below the logo */
+    margin-top: -30px; /* Adjust the top margin */
+  }
+</style>
+
+<!-- Content block -->
+{% block content %}
+<script>
+  // Script for toggling form visibility
+  $('.message a').click(function () {
+    $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+  });
+</script>
+<div class="login-page">
+  <div class="form">
+    {% csrf_token %}
+    <!-- Login form -->
+    <form class="login-form" action="{% url 'accounts:login' %}" method="post">
+      {% csrf_token %}
+      <!-- Non-field errors -->
+      <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+        {% for error in form.non_field_errors %}
+        <div class="text-danger">
+            <p>{{ error }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- Logo -->
+      <img class="logo" src="/static/img/logo.png" alt="logo">
+      <!-- Form fields -->
+      {% for field in form %}
+      <div class="form-group">
+        {% render_field field class="form-control" placeholder=field.label %}
+        <!-- Field errors -->
+        <div class="{% if field.errors %} invalid{% endif %}">
+          {% for error in field.errors %}
+          <p class="help-block text-danger">{{ error }}</p>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+      <!-- Submit button -->
+      <button type="submit">log in</button>
+      <!-- Registration message -->
+      <p class="message">Not registered? <a href="{% url 'accounts:signup' %}">Create an account</a></p>
+    </form>
+  </div>
+</div>
+{% endblock content %}

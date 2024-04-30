@@ -1,0 +1,13 @@
+{% for message in messages %}
+<!-- Loop through each message in the messages list -->
+<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <!-- Bootstrap alert with dynamic classes based on message tags -->
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <!-- Close button for dismissing the alert -->
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- Actual message content -->
+    {{ message }}
+</div>
+<!-- End of alert container -->
+{% endfor %}

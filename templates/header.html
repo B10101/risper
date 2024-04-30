@@ -1,0 +1,64 @@
+<script>
+    // Script to handle logout link click event
+    $(document).ready(function () {
+        $('#logout-link').click(function () {
+            // Add logout functionality here
+        });
+    });
+</script>
+
+<nav style="background-color:#000000;" class="navbar navbar-expand-sm navbar-dark">
+    <!-- Logo -->
+    <img style="width:auto; height:70px; margin:5px;" class="banlogo" src="/static/img/logo.png" alt="logo">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="/">MINSTERVENTORY</a>
+    <!-- Navbar toggler -->
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <!-- Home link -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <!-- Store link -->
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'store:list'%}">
+                    <i class="fab fa-container-storage red"></i>
+                    Reservations
+                </a>
+            </li>
+            <!-- User dropdown -->
+            <li class="dropdown">
+                <!-- User name and dropdown toggle -->
+                <a id="logout-link" class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="fa fa-user" aria-hidden="true"></span>
+                    {{user.first_name}}
+                </a>
+                <!-- Dropdown menu -->
+                <div class="dropdown-menu " aria-labelledby="dropdownId"  style="background-color:rgba(255, 229, 32, 0.978); color:white;">
+                    <!-- Profile link (commented out) -->
+                    {% comment %}
+                    <a href="{%url 'accounts:profile' pk=user.id %}" class="dropdown-item">
+                        Profile
+                    </a>
+                    {% endcomment %}
+                    <!-- Logout link -->
+                    <a href="{%url 'accounts:login' %}" class="dropdown-item" id="logout-link">
+                        Log out
+                    </a>
+                </div>
+            </li>
+            <!-- Search form -->
+        </ul>
+        <!-- Search form -->
+        <form class="form-inline my-2 my-lg-0" method="GET" id="search-form" data-url="{%url 'item:search'%}"
+            action="{%url 'item:search'%}">
+            <input class="form-control mr-sm-2" name="query" id="item" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Search</button>
+        </form>
+    </div>
+</nav>

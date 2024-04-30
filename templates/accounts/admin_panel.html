@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Admin panel container -->
+<div class="admin-panel">
+  <!-- Heading -->
+  <h1>Welcome to Admin Panel</h1>
+  <!-- Admin functionalities -->
+  <div class="functionality">
+    <h2>Manage Users</h2>
+    <p>Here you can approve user sign-ups, update user accounts, and manage user roles.</p>
+    <ul>
+      <li><a href="{% url 'accounts:pending_signups_list' %}">Approve User Sign-Ups</a></li> <!-- Link to the pending sign-ups list -->
+      <li><a href="#">Update User Accounts</a></li>
+      <li><a href="#">Manage User Roles</a></li>
+    </ul>
+  </div>
+  <div class="functionality">
+    <h2>Generate Reports</h2>
+    <p>Generate various types of reports, such as inventory status, equipment usage history, etc.</p>
+    <ul>
+      <li><a href="{% url 'accounts:generate_inventory_status_report'%}">Inventory Status</a></li>
+      <li><a href="{% url 'accounts:generate_usage_history_report'%}">Equipment Usage History</a></li>
+    </ul>
+  </div>
+  <div class="functionality">
+    <h2>Manage Equipment</h2>
+    <p>Add, update, or remove equipment from the inventory.</p>
+    <ul>
+      <li><a href="{% url 'item:add_equipment'%}">Add New Equipment</a></li>
+      <li><a href="#">Update Equipment Details</a></li>
+      <li><a href="#">Remove Equipment</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock content %}

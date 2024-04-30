@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Equipment Usage History Report</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>User</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for record in usage_history %}
+    <tr>
+      <td>{{ record.item_name }}</td>
+      <td>{{ record.user }}</td>
+      <td>{{ record.date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

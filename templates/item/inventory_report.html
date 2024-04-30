@@ -1,0 +1,10 @@
+{% extends '../base.html' %}
+{% block title %}Inventory Report{% endblock title %}
+{% block content %}
+<div class="container">
+    <h1>Inventory Report</h1>
+    <p>Total Items: {{ total_items }}</p>
+    <p>Available Items: {{ available_items }}</p>
+    <p>Unavailable Items: {{ unavailable_items }}</p>
+</div>
+{% endblock content %}

@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        {% block title %}
+        Inventory manager
+        {% endblock title %}
+    </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- DataTables Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    
+    <!-- Custom CSS for authenticated users -->
+    {% if not user.is_authenticated %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endif %}
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- DataTables Bootstrap JavaScript -->
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- JavaScript for hiding URL bar -->
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+             setTimeout(hideURLbar, 0); }, false); 
+             function hideURLbar(){ 
+                 window.scrollTo(0,1); }
+   </script>
+    
+    <!-- Custom styles -->
+    <style>
+        /* Overlay styles for modal */
+        .ui-widget-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #aaaaaa;
+            opacity: 0.3;
+        }
+
+        /* Loader styles */
+        #loader {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+    </style>
+
+</head>
+
+<body>
+    {% block content %}
+
+    {% endblock content %}
+    
+    {% block modal %}
+
+    {% endblock modal %}
+    
+    {% block extrascripts %}
+
+    {% endblock extrascripts %}
+
+</body>
+
+</html>

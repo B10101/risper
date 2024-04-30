@@ -1,0 +1,29 @@
+<!-- item_detail.html -->
+{% extends "../base.html" %}
+
+{% block title %}
+Item Details
+{% endblock title %}
+
+{% block content %}
+<div class='details'>
+    <h2 style="text-align: center" class="mb-4">Details of {{ item.name }}</h2>
+    <dl class="row">
+        <!-- Display other item details -->
+        <dt class="col-sm-3">Name:</dt>
+        <dd class="col-sm-9">{{ item.name }}</dd>
+        <dt class="col-sm-3">Type:</dt>
+        <dd class="col-sm-9">{{ item.type }}</dd>
+        <dt class="col-sm-3">Serial:</dt>
+        <dd class="col-sm-9">{{ item.serial }}</dd>
+        <!-- Add more fields as needed -->
+        <dt class="col-sm-3">On-site Only:</dt>
+        <dd class="col-sm-9">{% if item.on_site_only %}Yes{% else %}No{% endif %}</dd>
+    </dl>
+    <div class="btn-group" role="group" aria-label="Button group">
+        <a href="{% url 'item:reserve' pk=item.pk %}">
+            <button class="btn btn-primary">Reserve</button>
+        </a>
+    </div>
+</div>
+{% endblock content %}
